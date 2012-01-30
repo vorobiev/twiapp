@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  refresh_url: MyString
+  tweet_count: 1
+  last_search: 2012-01-30 01:39:22
+  task: 
+
+two:
+  name: MyString
+  refresh_url: MyString
+  tweet_count: 1
+  last_search: 2012-01-30 01:39:22
+  task: 

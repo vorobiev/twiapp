@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twiapp</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body style="padding-top: 60px">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container-fluid">
+        <h3><%= link_to "Twiapp", "/" %></h3>
+      <% if signed_in? %>
+        <ul class="nav">
+          <% Task.order('name ASC').each do |task| %>
+          <li><%= link_to task.name, task_path(task)  %></li>
+          <% end %>
+          <li><%= link_to "Пользователи", users_path  %></li>
+          <li><%= link_to current_user.email + ' - выйти', sign_out_path, :method => :delete %></li>
+        </ul>  
+      <% end %>        
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="content">
+    
+        <% flash.each do |key, value| -%>
+          <div class="alert-message <%= key %>"><p><%=h value %></p></div>
+        <% end %>
+      
+        <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

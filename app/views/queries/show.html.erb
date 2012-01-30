@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @query.name %>
+</p>
+
+<p>
+  <b>Refresh url:</b>
+  <%= @query.refresh_url %>
+</p>
+
+<p>
+  <b>Tweet count:</b>
+  <%= @query.tweet_count %>
+</p>
+
+<p>
+  <b>Last search:</b>
+  <%= @query.last_search %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%= @query.task %>
+</p>
+
+
+<%= link_to 'Edit', edit_query_path(@query) %> |
+<%= link_to 'Back', queries_path %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  last_search: 2012-01-30 01:37:49
+
+two:
+  name: MyString
+  last_search: 2012-01-30 01:37:49

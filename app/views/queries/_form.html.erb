@@ -1,0 +1,26 @@
+<%= form_for(@query) do |f| %>
+  <% if @query.errors.any? %>
+    <div id="error_explanation">
+      <h2>Ошибки при сохранении</h2>
+
+      <ul>
+      <% @query.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="clearfix">
+    <%= f.label :name %>
+    <div class="input">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  
+  <%= f.hidden_field :task_id %>
+  
+  <div class="actions">
+    <%= f.submit :class => 'btn primary'%>
+  </div>
+<% end %>

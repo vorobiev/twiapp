@@ -1,0 +1,14 @@
+ru:
+    activerecord:
+        models:
+            task: "Задание"
+            query: "Запрос"
+            user: "Учетная запись"
+        attributes:
+            task:
+                name: "Название"
+                query: "Запрос"
+            query:
+                name: "Поисковая строка"
+            user:
+                password: "Пароль"

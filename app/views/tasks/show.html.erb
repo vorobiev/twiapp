@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+<h1><%= @task.name %></h1>
+</div>
+
+<p>
+  <b>Последний поиск:</b>
+  <%= @task.last_search %>
+</p>
+
+
+<p></p>
+<p></p>
+
+<h3>Поисковые запросы</h3>
+
+
+<table>
+  <tr>
+    <th>Строка</th>
+    <th>Последний поиск</th>
+    <th>Найдено твитов</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @queries.each do |query| %>
+  <tr>
+    <td><%= link_to query.name , query %></td>
+    <td><%= query.last_search %></td>
+    <td><%= query.tweet_count %></td>
+    <td><%= link_to 'Правка', edit_query_path(query) %></td>
+    <td><%= link_to 'Удалить', query, confirm: 'Точно удалить?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<input type="button" class="btn" value="Добавить поисковую строку" onclick="window.location.href='<%= new_query_path %>?task=<%= @task.id %>'" />
+
+<p></p>
+<p></p>
+
+<h3>Твиты</h3>
+
+<%= form_for( :tweet , :action => :show  , :method => :get , :id => :search_form ) do |f| %>
+
+<div class="clearfix">
+  <%= f.label 'Дата от' %>
+  <div class="input">
+    <%= f.date_select :date_from , :default => @date_from.nil? ? Time.now - 3.days : @date_from %>
+  </div>
+</div>
+<div class="clearfix">
+  <%= f.label 'Дата до' %>
+  <div class="input">
+    <%= f.date_select :date_to , :default => @date_to.nil? ? Time.now  : @date_to  %>
+  </div>
+</div>
+<div class="actions">
+  <%= f.submit 'Показать', :class => 'btn primary' %>
+  <input type="button" value="Сбросить фильтр" id="show_all" class="btn" />
+  <input type="button" value="Выгрузить в CSV" id="csv_export" class="btn success" />
+</div>
+
+<% end%>
+
+
+
+<table>
+  <tr>
+    <th>Юзер</th>
+    <th>Дата</th>
+    <th>Время</th>
+    <th>Текст</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tweets.each do |tweet| %>
+  <% username = tweet.user %>
+  <tr>
+    <td><a href="http://twitter.com/<%= username %>/" target="_blank"><%= username %></a></td>
+    <td><%= l tweet.date , :format => '%d.%m.%Y' %></td>
+    <td><%= l tweet.date , :format => '%H:%M' %></td>
+    <td><%= raw tweet.parsed_text %></td>
+    <td><a href="http://twitter.com/<%= username %>/status/<%= tweet.tweet_id %>" target="_blank">ссылка</a></td>
+    <td><%= link_to "Удалить", tweet, :method => :delete %></td>
+  </tr>
+<% end -%>
+
+</table>
